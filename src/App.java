@@ -40,25 +40,27 @@ public class App {
     }
 
     public void low() throws Exception {
-        // lower section
-        for (int i = rows - 1; i >= 1; i--) {
-            for (int j = rows; j > i; j--) {
-                // space
-                System.out.print(" ");
-            }
-            // symbol
-            System.out.print(symbol);
-            Thread.sleep(100);
-            for (int k = 1; k < (i - 1) * 2; k++) {
-                // space
-                System.out.print(" ");
-            }
-            if (i == 1) {
-                // proceeds to the next line
-                System.out.println();
-            } else {
-                System.out.println(symbol);
+        synchronized (lower) {
+            // lower section
+            for (int i = rows - 1; i >= 1; i--) {
+                for (int j = rows; j > i; j--) {
+                    // space
+                    System.out.print(" ");
+                }
+                // symbol
+                System.out.print(symbol);
                 Thread.sleep(100);
+                for (int k = 1; k < (i - 1) * 2; k++) {
+                    // space
+                    System.out.print(" ");
+                }
+                if (i == 1) {
+                    // proceeds to the next line
+                    System.out.println();
+                } else {
+                    System.out.println(symbol);
+                    Thread.sleep(100);
+                }
             }
         }
     }
